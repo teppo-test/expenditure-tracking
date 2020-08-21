@@ -1,8 +1,8 @@
 CREATE TABLE receipt(
     id INT IDENTITY(1,1) PRIMARY KEY,
     market_name VARCHAR(75),
-    receipt_create_date DATE,
-    create_time TIMESTAMP
+    receipt_create_date DATETIME,
+    create_time DATETIME
 )
 
 CREATE TABLE receipt_item(
@@ -14,7 +14,7 @@ CREATE TABLE receipt_item(
     sale_amount INT,
     real_price FLOAT,
     market_name VARCHAR(75),
-    create_time TIMESTAMP
+    create_time DATETIME
 )
 
 CREATE TABLE market(
