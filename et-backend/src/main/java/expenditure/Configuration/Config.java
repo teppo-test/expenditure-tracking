@@ -12,7 +12,7 @@ public class Config {
 
     @Bean
     @Autowired
-    public IReceiptService getReceiptService(){
+    public ReceiptService getReceiptService(){
         return new ReceiptService();
     }
 
