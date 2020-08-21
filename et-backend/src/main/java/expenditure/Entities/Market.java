@@ -8,8 +8,8 @@ import javax.persistence.Table;
 import java.io.Serializable;
 
 @Entity
-@AllArgsConstructor(access = AccessLevel.PACKAGE)
-@NoArgsConstructor(access = AccessLevel.PACKAGE)
+@AllArgsConstructor(access = AccessLevel.PUBLIC)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @Table(name="market")
 public class Market implements Serializable {
 
