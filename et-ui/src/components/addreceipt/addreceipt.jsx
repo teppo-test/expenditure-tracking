@@ -2,8 +2,8 @@ import React from 'react';
 import './../../resources/styles/common.css';
 import './addreceipt.css'
 import { useSelector, useDispatch } from 'react-redux';
-import { addreceipt, cancelreceipt, addmarketname, addcreatedate } from './../../actions'
-
+import { addreceipt, cancelreceipt, addmarketname, addcreatedate, openReceiptItemModal } from './../../actions'
+import ReceiptItemModal from './../receipt_item_modal/receipt_item_modal';
 
 function AddReceipt() {
 
@@ -46,11 +46,14 @@ function AddReceipt() {
                     </div>
                 </div>
                 <div>
-                    <button className="btn btn-primary" data-toggle="modal" data-target="#receiptItemModal">Add new receiptItem</button>
+                    <div>
+                        <button className="btn btn-primary" onClick={() => dispatch(openReceiptItemModal())}>Add new receiptItem</button>
+                    </div>
+                    <div>
+                        <button className="" onClick={() => dispatch(cancelreceipt())}>Cancel adding receipt</button>
+                    </div>
                 </div>
-                <div>
-                    <button className="" onClick={() => dispatch(cancelreceipt())}>Cancel adding receipt</button>
-                </div>
+                <ReceiptItemModal></ReceiptItemModal>
             </div>
         )
     }

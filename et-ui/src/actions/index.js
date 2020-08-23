@@ -23,3 +23,15 @@ export const addcreatedate = (createDate) => {
         payload: createDate
     }
 }
+
+export const openReceiptItemModal = () => {
+    return{
+        type: 'OPENMODAL',
+    }
+}
+
+export const closeReceiptItemModal = () => {
+    return{
+        type: 'CLOSEMODAL',
+    }
+}
