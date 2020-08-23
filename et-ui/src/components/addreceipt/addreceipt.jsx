@@ -51,7 +51,6 @@ function AddReceipt() {
                 <div>
                     <button className="" onClick={() => dispatch(cancelreceipt())}>Cancel adding receipt</button>
                 </div>
-                <ReceiptItemModal></ReceiptItemModal>
             </div>
         )
     }
