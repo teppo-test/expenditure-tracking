@@ -1,0 +1,21 @@
+.add-button{
+    background-color: white;
+    border-radius: 10em;
+    border-color: lightgreen;
+    margin-top: 2.5em;
+}
+
+.receipt-metadata{
+    width: 35%;
+    margin-top: 10px;
+}
+
+.datetimepickers{
+    border-radius: 0.2em;
+    width: 1em;
+}
+
+.space-elements{
+    margin-top: 0.2em;
+    padding : 0.2em;
+}

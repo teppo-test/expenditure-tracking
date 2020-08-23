@@ -8,7 +8,7 @@ class NavBar extends Component {
         return (
             <div id="navtop">
                 <div className="navbar navbar-expand-md navbar-dark bg-dark navbar-static-top" >
-                    <a className="navbar-brand" href="#">Navigation</a>
+                    <a className="navbar-brand">Navigation</a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -16,6 +16,9 @@ class NavBar extends Component {
                     <div className="collapse navbar-collapse" id="navbarsExampleDefault">
                         <li className="nav-item active">
                             <NavLink className="nav-link navlink-color" to="/">Home</NavLink>
+                        </li>
+                        <li className="nav-item active">
+                            <NavLink className="nav-link navlink-color" to="/addreceipt">Add receipts</NavLink>
                         </li>
                     </div>
                 </div>

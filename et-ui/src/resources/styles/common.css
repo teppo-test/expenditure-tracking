@@ -8,3 +8,9 @@
 .centered-text{
     text-align: center;
 }
+
+.centered-element{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

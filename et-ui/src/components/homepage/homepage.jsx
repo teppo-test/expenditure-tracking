@@ -8,7 +8,7 @@ class HomePage extends Component{
         return(
             <div>
                 <div>
-                    <h1 className="centered-text" style={{marginTop: "1em"}}>Expenditure tracking</h1>
+                    <h1 className="centered-text" style={{marginTop: "1em"}}>Let the moneyy flow</h1>
                 </div>
                 <div>
                     <img className="centered-image" style={{marginTop: "5em"}} src={coinImage}></img>
