@@ -1,61 +1,97 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './../../resources/styles/common.css';
 import './addreceipt.css'
-import { useSelector, useDispatch } from 'react-redux';
-import { addreceipt, cancelreceipt, addmarketname, addcreatedate, openReceiptItemModal } from './../../actions'
 import ReceiptItemModal from './../receipt_item_modal/receipt_item_modal';
 
-function AddReceipt() {
+class AddReceipt extends Component {
+    constructor() {
+        super();
 
-    const dispatch = useDispatch();
-    const receiptState = useSelector(state => state.addReceiptState)
-
-    if (!receiptState) {
-        return (
-            <div>
-                <button className="centered-element add-button" onClick={() => dispatch(addreceipt())}>+ Add new receipt</button>
-            </div>
-        )
+        this.state = {
+            receiptState: false,
+            modalState: false,
+            receiptMetadata: { market_name: "", receipt_create_date: "" },
+            receiptItems: []
+        }
     }
-    else {
-        return (
-            <div>
-                <div className="centered-element receipt-metadata">
-                    <div className="card">
-                        <div className="card-header">
-                            Receipt metadata
-                        </div>
-                        <div className="card-body">
-                            <div className="space-elements">
-                                <div>
-                                    Receipt creation date:
-                                </div>
-                                <div>
-                                    <input className="form-control" type="date" onChange={(e) => dispatch(addcreatedate(e.target.value))}></input>
-                                </div>
-                            </div>
-                            <div className="space-elements">
-                                <div>
-                                    Market:
-                                </div>
-                                <div>
-                                    <input className="form-control" type="text" onChange={(e) => dispatch(addmarketname(e.target.value))}></input>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+    //Handlers for data
+    handleBoolStates = (statee, action) => {
+        let stateValue = (action === "activate") ? true : false;
+        this.setState({ [statee]: stateValue });
+    }
+
+    handleMetadataChange = (field, value) => {
+        let tempMetadata = this.state.receiptMetadata;
+        tempMetadata[field] = value;
+        this.setState({ receiptMetadata: tempMetadata });
+    }
+
+    handleReceiptItemAdd = (item) => {
+        let tempItems = this.state.receiptItems;
+        tempItems.push(item);
+        this.setState({ receiptItems: tempItems });
+    }
+
+
+    render() {
+        if (!this.state.receiptState) {
+            return (
                 <div>
-                    <div>
-                        <button className="btn btn-primary" onClick={() => dispatch(openReceiptItemModal())}>Add new receiptItem</button>
-                    </div>
-                    <div>
-                        <button className="" onClick={() => dispatch(cancelreceipt())}>Cancel adding receipt</button>
-                    </div>
+                    <button className="centered-element add-button" onClick={() => this.handleBoolStates("receiptState", "activate")} >+ Add new receipt</button>
                 </div>
-                <ReceiptItemModal></ReceiptItemModal>
-            </div>
-        )
+            )
+        }
+        else {
+            return (
+                <div>
+                    <div className="centered-element receipt-metadata">
+                        <div className="card">
+                            <div className="card-header">
+                                Receipt metadata
+                        </div>
+                            <div className="card-body">
+                                <div className="space-elements">
+                                    <div>
+                                        Receipt creation date:
+                                </div>
+                                    <div>
+                                        <input className="form-control" type="date" value={this.state.receiptMetadata.receipt_create_date} onChange={(e) => this.handleMetadataChange("receipt_create_date", e.target.value)}></input>
+                                    </div>
+                                </div>
+                                <div className="space-elements">
+                                    <div>
+                                        Market:
+                                </div>
+                                    <div>
+                                        <input className="form-control" type="text" value={this.state.receiptMetadata.market_name} onChange={(e) => this.handleMetadataChange("market_name", e.target.value)}></input>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <button className="btn btn-primary" onClick={() => this.handleBoolStates("modalState", "activate")}>Add new receiptItem</button>
+                        </div>
+                        <div>
+                            <button className="" >Cancel adding receipt</button>
+                        </div>
+                    </div>
+                    <div>
+                        <div className="card">
+                            <div className="card-header">
+                                Receipt items
+                        </div>
+                            <div className="card-body">
+                                {this.state.receiptItems.length}
+                            </div>
+                        </div>
+                    </div>
+                    <ReceiptItemModal modalState={this.state.modalState} stateChange={this.handleBoolStates} itemAdd={this.handleReceiptItemAdd}></ReceiptItemModal>
+                </div>
+            )
+        }
     }
 }
 
